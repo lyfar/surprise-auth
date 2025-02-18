@@ -1,34 +1,35 @@
-import { SparklesCore } from "@/components/ui/sparkles";
-import Link from "next/link";
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
+import Link from "next/link"
 
-export default function Page() {
+export default function Home() {
   return (
-    <div className="h-screen relative w-full bg-black flex flex-col items-center justify-center overflow-hidden">
-      <div className="w-full absolute inset-0 h-screen">
-        <SparklesCore
-          id="tsparticles"
-          background="transparent"
-          particleColor="#FFFFFF"
-          particleDensity={100}
-          speed={2}
-          className="w-full h-full"
-        />
-      </div>
-      
-      <div className="relative z-10 max-w-3xl text-center px-4">
-        <h1 className="text-5xl text-white font-bold mb-6">
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div className="max-w-2xl text-center">
+        <h1 className="text-5xl font-bold tracking-tight text-[#131316] mb-4">
           Surprise starts here
         </h1>
-        <p className="text-xl text-gray-200 mb-8">
-          Discover extraordinary experiences in Hong Kong. Join unique events that blend tradition with innovation in Asia's most vibrant city.
+        <p className="text-[#5E5F6E] text-xl mb-8">
+          Discover extraordinary experiences in Hong Kong. Join unique events 
+          that blend tradition with innovation in Asia's most vibrant city.
         </p>
-        <Link 
-          href="/sign-in" 
-          className="inline-block px-8 py-3 text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-full hover:opacity-90 transition-opacity"
-        >
-          Sign in
-        </Link>
+        <div className="flex justify-center gap-4">
+          <SignedIn>
+            <Link
+              href="/events"
+              className="px-6 py-3 rounded-full bg-[#131316] text-white text-sm font-semibold hover:bg-[#2b2b2f] transition-colors"
+            >
+              View Events
+            </Link>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton>
+              <button className="px-6 py-3 rounded-full bg-[#131316] text-white text-sm font-semibold hover:bg-[#2b2b2f] transition-colors">
+                Sign in
+              </button>
+            </SignInButton>
+          </SignedOut>
+        </div>
       </div>
-    </div>
-  );
+    </main>
+  )
 }
